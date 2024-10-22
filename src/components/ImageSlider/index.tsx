@@ -59,21 +59,28 @@ const ImageSlider = (props: ImageSliderProps) => {
 
     return (
         <div className='container'>
-            <BsArrowLeftCircleFill onClick={onLeftArrowClick} />
+            <BsArrowLeftCircleFill className='arrow left-arrow' onClick={onLeftArrowClick} />
             {
                 images && images.length ? (
-                    images.map((image, index) => <img 
-                        key={image.id} 
-                        className={index === currentSlide? "current-slide" : "slide"} 
-                        alt={image.download_url} 
-                        src={image.download_url} />)
+                    images.map((image, index) => 
+                        <img 
+                            key={image.id} 
+                            className={index === currentSlide? "current-slide" : "current-slide hide"} 
+                            alt={image.download_url} 
+                            src={image.download_url} 
+                        />)
                 ) : null
             }
-            <BsArrowRightCircleFill onClick={onRightArrowClick} />
+            <BsArrowRightCircleFill className='arrow right-arrow' onClick={onRightArrowClick} />
             <span className='carousel-indicators'>
                 {
                     images && images.length ? (
-                        images.map((image, index) => <button key={image.id} className='indicator' onClick={() => onIndicatorClick(index)} />)
+                        images.map((image, index) => 
+                            <button 
+                                key={image.id} 
+                                className={index === currentSlide? "indicator" : "indicator inactive"}
+                                onClick={() => onIndicatorClick(index)} 
+                            />)
                     ) : null
                 }
             </span>
